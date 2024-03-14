@@ -31,8 +31,8 @@ public class BasketController {
 
     @PostMapping("")
     public ResponseEntity<ResponseDto> create(
-            @RequestBody BasketRequest basketRequest, HttpServletRequest request) {
-        return new ResponseEntity<>(basketService.addBasket(basketRequest,userService.getUser(request)), HttpStatus.OK);
+            @RequestParam String productId, HttpServletRequest request) {
+        return new ResponseEntity<>(basketService.addBasket(productId,userService.getUser(request)), HttpStatus.OK);
     }
 
 }

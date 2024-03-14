@@ -25,8 +25,8 @@ public class BasketService {
         return basketRepo.findAllByUser(user.getId()).stream().map(BasketDto::new).toList();
     }
 
-    public ResponseDto addBasket(BasketRequest request, User user){
-        List<Basket> exist = basketRepo.findAllByUser(user.getId()).stream().filter(x->x.getProduct().getId().equals(request.getProductId())).toList();
+    public ResponseDto addBasket(String productId, User user){
+        List<Basket> exist = basketRepo.findAllByUser(user.getId()).stream().filter(x->x.getProduct().getId().equals(productId)).toList();
         Basket basket;
         if(!exist.isEmpty()){
             basket = exist.get(0);
@@ -35,7 +35,7 @@ public class BasketService {
         else{
             basket = new Basket();
             basket.setUser(user);
-            basket.setProduct(new Product(request.getProductId()));
+            basket.setProduct(new Product(productId));
             basket.setQuantity(1);
         }
         basketRepo.save(basket);
