@@ -35,4 +35,10 @@ public class BasketController {
         return new ResponseEntity<>(basketService.addBasket(productId,userService.getUser(request)), HttpStatus.OK);
     }
 
+    @DeleteMapping("")
+    public ResponseEntity<ResponseDto> delete(
+            @RequestParam String id, HttpServletRequest request) {
+        return new ResponseEntity<>(basketService.deleteBasket(id,userService.getUser(request)), HttpStatus.OK);
+    }
+
 }

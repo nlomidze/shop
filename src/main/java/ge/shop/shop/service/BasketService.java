@@ -41,4 +41,10 @@ public class BasketService {
         basketRepo.save(basket);
         return new ResponseDto(HttpStatus.OK);
     }
+
+    public ResponseDto deleteBasket(String id,User user){
+        Basket basket = basketRepo.findById(id).get();
+        basketRepo.delete(basket);
+        return new ResponseDto(HttpStatus.OK,"ok");
+    }
 }
